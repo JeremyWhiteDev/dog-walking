@@ -1,39 +1,50 @@
-import { getPets, getWalkers } from "./database.js"
+import { getPets, getWalkers } from "./database.js";
 
 // Get copy of state for use in this module
-const pets = getPets()
-const walkers = getWalkers()
+const pets = getPets();
+const walkers = getWalkers();
 
+//No Pets logic?
+export const Pets = () => {
+  let petsHTML = "<ul>";
 
+  for (const pet of pets) {
+    petsHTML += `<li>${pet.name}</li>`;
+  }
+  petsHTML += "</ul>";
+
+  return petsHTML;
+};
 // Function whose responsibility is to find the walker assigned to a pet
 const findWalker = (pet, allWalker) => {
-    let petWalker = null
-
-    for (const walker of allWalkers) {
-        if (walker.id === pet.walkerId) {
-            petWalker = walker
-        }
+  let petWalker = null;
+  //fixed allWalker typo
+  for (const walker of allWalker) {
+    if (walker.id === pet.walkerId) {
+      petWalker = walker;
     }
+  }
 
-    return petWalker
-}
+  return petWalker;
+};
 
 export const Assignments = () => {
-    let assignmentHTML = ""
-    assignmentHTML = "<ul>"
+  let assignmentHTML = "";
+  assignmentHTML += "<ul>";
+  //fixed missing plus equals
+  // fixed findWalker Typo
+  for (const currentPet of pets) {
+    const currentPetWalker = findWalker(currentPet, walkers);
+    //fixed missing plus equals
+    assignmentHTML += `
+    <li>
+    ${currentPet.name} is being walked by
+    ${currentPetWalker.name} in ${currentPetWalker.city}
+    </li>
+    `;
+  }
 
-    for (const currentPet of pets) {
-        const currentPetWalker = findPetWalker(currentPet, walkers)
-        assignmentHTML = `
-            <li>
-                ${currentPet.name} is being walked by
-                ${currentPetWalker.name} in ${currentPetWalker.city}
-            </li>
-        `
-    }
+  assignmentHTML += "</ul>";
 
-    assignmentHTML += "</ul>"
-
-    return assignmentHTML
-}
-
+  return assignmentHTML;
+};
