@@ -5,7 +5,7 @@ import { RegisteredPets } from "./RegisteredPets.js";
 //fixed missing import
 
 const mainContainer = document.querySelector("#container");
-//added pets into html
+//added RegisteredPets into html
 const applicationHTML = `
 <h1>DeShawns Dog Walking</h1>
 <article class="details">
