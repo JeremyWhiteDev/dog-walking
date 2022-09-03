@@ -23,7 +23,7 @@ const findWalker = (pet, allWalker) => {
 
 //to create an array of numbers that match city id
 
-const findWalkerCity = (currentWalker, allWalkerCities) => {
+export const findWalkerCity = (currentWalker, allWalkerCities) => {
   let walkerCities = [];
   for (const walkerCity of allWalkerCities) {
     if (walkerCity.walkerId === currentWalker.id) {
@@ -35,7 +35,7 @@ const findWalkerCity = (currentWalker, allWalkerCities) => {
 
 //create function that references the array above and creates a string.
 
-const makeCityList = (currentWalkerCityArr, allCities) => {
+export const makeCityList = (currentWalkerCityArr, allCities) => {
   let cityList = [];
   //for each walker city array, take the current object, use that current objects city.id to find the name of the city
   for (const walkerCity of currentWalkerCityArr) {

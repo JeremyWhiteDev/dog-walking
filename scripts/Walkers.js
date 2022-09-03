@@ -1,4 +1,10 @@
-import { getWalkers } from "./database.js";
+import { getWalkers, getCities, getWalkerCities } from "./database.js";
+
+import { findWalkerCity, makeCityList } from "./Assignments.js";
+
+const cities = getCities();
+const walkerCities = getWalkerCities();
+const walkers = getWalkers();
 
 document.addEventListener("click", (clickEvent) => {
   const itemClicked = clickEvent.target;
@@ -7,15 +13,15 @@ document.addEventListener("click", (clickEvent) => {
 
     for (const walker of walkers) {
       if (walker.id === parseInt(walkerId)) {
-        window.alert(`${walker.name} services ${walker.city}`);
+        const walkerCityArray = findWalkerCity(walker, walkerCities);
+        const cityList = makeCityList(walkerCityArray, cities);
+        window.alert(`${walker.name} services ${cityList}`);
       }
     }
   }
 });
 
 //fixed get walker typo
-
-const walkers = getWalkers();
 
 export const Walkers = () => {
   let walkerHTML = "<ul>";
